@@ -2,6 +2,23 @@
 const kind = 'Feed';
 const projectId = process.env.GOOGLE_CLOUD_PROJECT;
 
+// Preparing Cloud Datastore
+const Datastore = require('@google-cloud/datastore');
+const datastore = new Datastore({
+    projectId: projectId,
+});
+
+// Cloud Datastore
+// Read Feed url
+async function addFeedTask() {
+    const query = datastore.createQuery(kind)
+    const results = await datastore.runQuery(query)
+    const feeds = results[0]
+    feeds.forEach(feed => {
+        console.log(feed)
+    })
+}
+
 // Start server
 const bodyParser = require('body-parser')
 const express = require('express');
@@ -17,26 +34,7 @@ app.listen(PORT, () => {
     console.log('Started');
 });
 
-// Preparing Cloud Datastore
-const Datastore = require('@google-cloud/datastore');
-const datastore = new Datastore({
-    projectId: projectId,
-});
-
 // Handlers
 app.get('/', (_, res) => {
     res.status(200).send('Hello, world!').end();
 });
-
-// Functions
-
-// Cloud Datastore
-// Read Feed url
-async function addFeedTask() {
-    const query = datastore.createQuery(kind)
-    const results = await datastore.runQuery(query)
-    const feeds = results[0]
-    feeds.forEach(feed => {
-        console.log(feed)
-    })
-}
