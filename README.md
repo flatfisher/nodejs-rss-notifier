@@ -11,3 +11,9 @@ RSS Notifier is notify app of RSS, notify somewhere using an HTTP request if the
 - Cloud Tasks
 - Cloud Scheduler
 - Cloud Datastore
+
+## Deploy
+
+```
+$ gcloud app deploy app.yaml
+```
