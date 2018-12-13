@@ -16,7 +16,7 @@ async function addFeedTask() {
     const results = await datastore.runQuery(query)
     const feeds = results[0]
     feeds.forEach(feed => {
-        console.log(feed)
+        addTask(feed.url)
     })
 }
 
