@@ -1,0 +1,46 @@
+{
+    "name": "rss-notifier",
+    "description": "RSS Notifier",
+    "version": "0.0.1",
+    "private": true,
+    "license": "MIT License",
+    "author": "Kyohei Tsuda",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/flatfisher/nodejs-rss-notifier"
+    },
+    "engines": {
+        "node": ">=8"
+    },
+    "scripts": {
+        "deploy": "gcloud app deploy",
+        "start": "node app.js",
+        "lint": "repo-tools lint",
+        "pretest": "npm run lint",
+        "system-test": "repo-tools test app",
+        "test": "npm run system-test",
+        "e2e-test": "repo-tools test deploy"
+    },
+    "dependencies": {
+        "@google-cloud/datastore": "^2.0.0",
+        "@google-cloud/tasks": "^0.2.2",
+        "@google-cloud/translate": "^2.1.2",
+        "body-parser": "^1.18.3",
+        "express": "^4.16.3",
+        "request": "^2.88.0",
+        "rss-parser": "^3.5.3"
+    },
+    "devDependencies": {
+        "@google-cloud/nodejs-repo-tools": "^2.3.0",
+        "semistandard": "^12.0.1"
+    },
+    "cloud-repo-tools": {
+        "test": {
+            "app": {
+                "msg": "Hello, world!"
+            }
+        },
+        "requiresKeyFile": true,
+        "requiresProjectId": true
+    }
+}
