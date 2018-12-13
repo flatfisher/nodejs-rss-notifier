@@ -5,3 +5,9 @@ RSS Notifier is notify app of RSS, notify somewhere using an HTTP request if the
 - Node.js
 - gcloud command
 - GCP Account
+
+## GCP Products
+- Google App Engine 2nd gen Node.js
+- Cloud Tasks
+- Cloud Scheduler
+- Cloud Datastore
