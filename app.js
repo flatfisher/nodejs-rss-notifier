@@ -2,11 +2,12 @@
 const kind = 'Feed';
 const projectId = process.env.GOOGLE_CLOUD_PROJECT;
 
-// Preparing Cloud Datastore
+// Preparing GCP Products library
 const Datastore = require('@google-cloud/datastore');
 const datastore = new Datastore({
     projectId: projectId,
 });
+const CloudTasks = require('@google-cloud/tasks');
 
 // Cloud Datastore
 // Read Feed url
@@ -17,6 +18,30 @@ async function addFeedTask() {
     feeds.forEach(feed => {
         console.log(feed)
     })
+}
+
+// Cloud Tasks
+// Make a task
+async function addTask(url) {
+    const client = new CloudTasks.CloudTasksClient();
+    const options = { payload: url };
+    const task = {
+        appEngineHttpRequest: {
+            httpMethod: 'POST',
+            relativeUri: '/tasks/notify',
+        },
+    };
+    task.appEngineHttpRequest.body = Buffer.from(options.payload).toString(
+        'base64'
+    );
+    const queue = 'rss-notify-queue';
+    const location = 'us-central1';
+    const parent = client.queuePath(projectId, location, queue);
+    const request = {
+        parent: parent,
+        task: task,
+    };
+    return await client.createTask(request)
 }
 
 // Start server
