@@ -1,2 +1,12 @@
 runtime: nodejs10
-service: rss-notify
+service: release-note-notifier
+
+instance_class: F2
+
+handlers:
+- url: /v1/tasks/.*
+  secure: always
+  script: auto
+
+env_variables:
+  LINE_AUTHORIZATION: ''

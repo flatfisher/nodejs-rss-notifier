@@ -1,6 +1,6 @@
 {
-    "name": "rss-notifier",
-    "description": "RSS Notifier",
+    "name": "nodejs-rss-notifier",
+    "description": "CCP Release note notifier",
     "version": "0.0.1",
     "private": true,
     "license": "MIT License",
