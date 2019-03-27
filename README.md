@@ -61,7 +61,7 @@ LINE_AUTHORIZATION: 'LINE Notifyのaccess_tokenを入れる'
 $ gcloud app deploy queue.yaml
 
 // GAEのデプロイ
-$ gcloud app deploy app.yaml
+$ gcloud app deploy app.yaml --version v1
 
 // Schedulerのセット
 $ gcloud beta scheduler jobs create app-engine RSS-Notifier --schedule "0 */3 * * *" --time-zone Asia/Tokyo --description "Notify" --service release-note-notifier --relative-url /v1/tasks/make
