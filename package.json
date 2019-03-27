@@ -24,11 +24,11 @@
     "dependencies": {
         "@google-cloud/datastore": "^2.0.0",
         "@google-cloud/tasks": "^0.2.2",
-        "@google-cloud/translate": "^2.1.2",
+        "@google-cloud/translate": "^2.1.4",
         "body-parser": "^1.18.3",
         "express": "^4.16.3",
         "request": "^2.88.0",
-        "rss-parser": "^3.5.3"
+        "rss-parser": "^3.7.0"
     },
     "devDependencies": {
         "@google-cloud/nodejs-repo-tools": "^2.3.0",
