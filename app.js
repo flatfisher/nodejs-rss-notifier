@@ -41,9 +41,8 @@ app.post('/v1/tasks/notify', async (req, res) => {
     const rssResult = await readRss(url).catch((err) => res.status(500).send({ msg: `RSS failed: ${err}` }).end())
     let msg = 'success';
     if (rssResult.isUpdated) {
-        const notifyResult = await notify(rssResult).then(async (_) => {
-            const updateResult = await updateLastModified.catch((err) => res.status(500).send({ msg: 'Update failed' }).end())
-        }).catch((err) => res.status(500).send({ msg: 'Notification failed' }).end())
+        const notifyResult = await notify(rssResult).catch((err) => res.status(500).send({ msg: 'Notification failed' }).end());
+        const updateResult = await updateLastModified(rssResult, url).catch((err) => res.status(500).send({ msg: 'Update failed' }).end());
     } else {
         msg = 'There is no update';
     }
@@ -155,7 +154,7 @@ async function updateLastModified(rssResult, url) {
     const feed = {
         key: rssResult.key,
         data: {
-            date: new Date(rssResult.date),
+            date: new Date(),
             url: url,
         },
     };
